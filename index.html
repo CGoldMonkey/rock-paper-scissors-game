@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Rock, Paper, Scissors</title>
+    </head>
+    <body>
+        <script>
+            //game to be played against computer
+            //function will randomly return either 'Rock', 'Paper', or 'Scissors'
+            function computerPlay() {
+                let computerMove;
+                let decision = Math.floor(Math.random()*3) + 1; //returns random interger from one to three
+                switch(decision) {
+                    case 1:
+                      computerMove = 'Rock';
+                      break;
+                    case 2: 
+                    computerMove = 'Paper';
+                      break;
+                    case 3: 
+                    computerMove = 'Scissors';
+                      break;
+                }
+                return computerMove;
+            }
+
+            //plays a single round of RPS and returns string that declares winner
+            // like so "You Lose. Paper beats Rock"    
+            function playRound(playerSelection, computerSelection) {
+                //check if player selections is string typeOf ==='string
+                playerSelection.toLowerCase();
+                let roundDecision
+                let player = playerSelection;
+                let computer = computerSelection;
+
+                if(player === computer) { //if both equal, tie
+                    roundDecision = `It's a Tie. ${playerSelection} cancels ${computerSelection}`;
+                } else if((player==='rock'&&computer ==='scissors') || (player==='paper'&&computer==='rock')||  (player==='scissors'&&computer==='paper')) {
+                    roundDecision = `You Win. ${playerSelection} beats ${computerSelection}`;
+                } else {
+                    roundDecision = `You Lose. ${playerSelection} loses to ${computerSelection}`;
+                }
+                return roundDecision;
+            }
+
+            console.log(computerPlay());
+            console.log(playRound('rock', 'rock'));
+            console.log(playRound('paper', 'rock'));
+            console.log(playRound('scissors', 'rock'));
+        </script>
+    </body>
+</html>
