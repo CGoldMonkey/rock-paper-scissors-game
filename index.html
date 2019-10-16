@@ -6,8 +6,8 @@
     </head>
     <body>
         <script>
-
-            let playerScore = 0;
+            //global variable to store the score (i.e. who wins each round)
+            let playerScore = 0; 
             let compScore = 0;
 
             //game to be played against computer
@@ -59,14 +59,14 @@
             }
 
             function finalScore() {
-                let finalResult = 'After 5 rounds, ' + getScore();
+                let finalResult = 'After 5 rounds, ' + getScore()+'. ';
 
                 if(playerScore > compScore) {
-                    finalResult = finalResult +' The Player Wins!!!';
+                    finalResult = finalResult +'The Player Wins!!!';
                 } else if(playerScore < compScore) {
-                    finalResult = finalResult + ' The Computer Wins!!!';
+                    finalResult = finalResult + 'The Computer Wins!!!';
                 } else { //its a ties
-                    finalResult = finalResult + ' We have a Tie folks!!!';
+                    finalResult = finalResult + 'We have a Tie folks!!!';
                 }
                 return finalResult;
             }
