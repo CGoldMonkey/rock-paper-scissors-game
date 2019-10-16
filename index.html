@@ -6,6 +6,10 @@
     </head>
     <body>
         <script>
+
+            let playerScore = 0;
+            let compScore = 0;
+
             //game to be played against computer
             //function will randomly return either 'Rock', 'Paper', or 'Scissors'
             function computerPlay() {
@@ -28,26 +32,65 @@
             //plays a single round of RPS and returns string that declares winner
             // like so "You Lose. Paper beats Rock"    
             function playRound(playerSelection, computerSelection) {
-                //check if player selections is string typeOf ==='string
-                playerSelection.toLowerCase();
-                let roundDecision
-                let player = playerSelection;
-                let computer = computerSelection;
+                let playerMove = playerSelection.toLowerCase(); //put to lowerCase to check
+                let compMove = computerSelection.toLowerCase(); //lowercase to compare
+                
+                let roundDecision; //hold the string that declares the winner
 
-                if(player === computer) { //if both equal, tie
+                let rockWin = (playerMove === 'rock' && compMove === 'scissors');//player wins with rock if comp has scissors
+                let paperWin = (playerMove === 'paper'&&compMove === 'rock');
+                let scissorsWin = (playerMove === 'scissors'&&compMove === 'paper')
+
+                if(playerMove === compMove) { //if both equal, tie
                     roundDecision = `It's a Tie. ${playerSelection} cancels ${computerSelection}`;
-                } else if((player==='rock'&&computer ==='scissors') || (player==='paper'&&computer==='rock')||  (player==='scissors'&&computer==='paper')) {
+                } else if(rockWin || paperWin || scissorsWin) {
                     roundDecision = `You Win. ${playerSelection} beats ${computerSelection}`;
+                    playerScore++;
                 } else {
                     roundDecision = `You Lose. ${playerSelection} loses to ${computerSelection}`;
+                    compScore++;
                 }
                 return roundDecision;
             }
 
-            console.log(computerPlay());
-            console.log(playRound('rock', 'rock'));
-            console.log(playRound('paper', 'rock'));
-            console.log(playRound('scissors', 'rock'));
+            function getScore() {
+                let score = `Player Score: ${playerScore} vs. Computer Score: ${compScore}`;
+                return score;
+            }
+
+            function finalScore() {
+                let finalResult = 'After 5 rounds, ' + getScore();
+
+                if(playerScore > compScore) {
+                    finalResult = finalResult +' The Player Wins!!!';
+                } else if(playerScore < compScore) {
+                    finalResult = finalResult + ' The Computer Wins!!!';
+                } else { //its a ties
+                    finalResult = finalResult + ' We have a Tie folks!!!';
+                }
+                return finalResult;
+            }
+            
+            //plays a 5 round game that keeps score and reports a winner and loser at the end
+            function game() {
+                playerInput = window.prompt('Please input "rock", "paper", or "scissors".');
+                console.log(playRound(playerInput, computerPlay()));
+                console.log(getScore());
+                playerInput = window.prompt('Please input "rock", "paper", or "scissors".');
+                console.log(playRound(playerInput, computerPlay()));
+                console.log(getScore());
+                playerInput = window.prompt('Please input "rock", "paper", or "scissors".');
+                console.log(playRound(playerInput, computerPlay()));
+                console.log(getScore());
+                playerInput = window.prompt('Please input "rock", "paper", or "scissors".');
+                console.log(playRound(playerInput, computerPlay()));
+                console.log(getScore());
+                playerInput = window.prompt('Please input "rock", "paper", or "scissors".');
+                console.log(playRound(playerInput, computerPlay()));
+                console.log(finalScore());
+            }
+
+            game()
         </script>
     </body>
 </html>
