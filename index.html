@@ -5,6 +5,12 @@
         <title>Rock, Paper, Scissors</title>
     </head>
     <body>
+        <button type="button" id="rock">Rock</button>
+        <button type="button" id="paper">Paper</button>
+        <button type="button" id="scissors">Scissors</button>
+        <div id="results"></div>
+        <div id="score"></div>
+        <div id="winner"></div>
         <script>
             //global variable to store the score (i.e. who wins each round)
             let playerScore = 0; 
@@ -55,25 +61,23 @@
 
             function getScore() {
                 let score = `Player Score: ${playerScore} vs. Computer Score: ${compScore}`;
-                return score;
+                scoreDisplay.innerText = score;
             }
 
             function finalScore() {
-                let finalResult = 'After 5 rounds, ' + getScore()+'. ';
+                let finalResult = 'The first to 5 points wins.  We have a winner, ';
 
                 if(playerScore > compScore) {
                     finalResult = finalResult +'The Player Wins!!!';
-                } else if(playerScore < compScore) {
+                } else {
                     finalResult = finalResult + 'The Computer Wins!!!';
-                } else { //its a ties
-                    finalResult = finalResult + 'We have a Tie folks!!!';
                 }
-                return finalResult;
+                winnerDisplay.innerText = finalResult;
             }
             
             //plays a 5 round game that keeps score and reports a winner and loser at the end
             function game() {
-                playerInput = window.prompt('Please input "rock", "paper", or "scissors".');
+              /*  playerInput = window.prompt('Please input "rock", "paper", or "scissors".');
                 console.log(playRound(playerInput, computerPlay()));
                 console.log(getScore());
                 playerInput = window.prompt('Please input "rock", "paper", or "scissors".');
@@ -88,9 +92,39 @@
                 playerInput = window.prompt('Please input "rock", "paper", or "scissors".');
                 console.log(playRound(playerInput, computerPlay()));
                 console.log(finalScore());
+                */
+
+
             }
 
-            game()
+    //        game()
+
+            const buttons  = document.querySelectorAll('button');
+            const div = document.querySelector('#results');
+            const scoreDisplay = document.querySelector('#score');
+            const winnerDisplay = document.querySelector('#winner');
+
+            buttons.forEach(btn => btn.addEventListener('click', function(e) {
+   //             console.log(this.innerText);
+                div.textContent = playRound(this.innerText, computerPlay());
+                getScore();
+                if(playerScore === 5 || compScore === 5){
+                    finalScore();
+                    playerScore = 0;
+                    compScore = 0;
+
+                }
+ //               console.log(getScore);
+    //            console.log(playRound(this.innerText, computerPlay()))
+            }));
+            function getObject(e) {
+                console.log(e);
+                console.log(e.target.innerText)
+                console.log(e.target.id);
+                console.log(this.innerText);
+                playRound(e.target.innerText, computerPlay());
+            }
+            
         </script>
     </body>
 </html>
