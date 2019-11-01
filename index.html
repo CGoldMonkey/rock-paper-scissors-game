@@ -2,15 +2,20 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="./styles/style.css" type="text/css">
         <title>Rock, Paper, Scissors</title>
     </head>
     <body>
-        <button type="button" id="rock">Rock</button>
-        <button type="button" id="paper">Paper</button>
-        <button type="button" id="scissors">Scissors</button>
-        <div id="results"></div>
-        <div id="score"></div>
-        <div id="winner"></div>
+        <div class="container">
+            <div class="buttons">
+                <button type="button" id="rock">Rock</button>
+                <button type="button" id="paper">Paper</button>
+                <button type="button" id="scissors">Scissors</button>
+            </div>
+            <div id="results"></div>
+            <div id="score"></div>
+            <div id="winner"></div>
+        </div>
         <script>
             //global variable to store the score (i.e. who wins each round)
             let playerScore = 0; 
